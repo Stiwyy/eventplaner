@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 
-/**
- * EventForm component
- * @author Peter Rutschmann
- * @param onAddEvent
- * @returns {Element}
- */
-function EventForm({onAddEvent}) {
+function EventForm({ onAddEvent }) {
     const [eventName, setEventName] = useState("");
     const [eventType, setEventType] = useState("Meeting");
     const [isPublic, setIsPublic] = useState(false);
@@ -28,48 +22,55 @@ function EventForm({onAddEvent}) {
     };
 
     return (
-        <>
-            <h2>Event erfassen</h2>
-            <form onSubmit={handleSubmit} style={{marginBottom: "20px"}}>
-                <div>
-                    <label>Veranstaltungsname: </label>
+        <div>
+            <h2 className="mb-4">Event erfassen</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                    <label className="form-label">Veranstaltungsname:</label>
                     <input
                         type="text"
+                        className="form-control"
                         value={eventName}
                         onChange={(e) => setEventName(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Typ: </label>
-                    <select value={eventType} onChange={(e) => setEventType(e.target.value)}>
+                <div className="mb-3">
+                    <label className="form-label">Typ:</label>
+                    <select
+                        className="form-select"
+                        value={eventType}
+                        onChange={(e) => setEventType(e.target.value)}
+                    >
                         <option value="Meeting">Meeting</option>
                         <option value="Party">Party</option>
                         <option value="Workshop">Workshop</option>
                     </select>
                 </div>
-                <div>
-                    <label>
-                        Öffentlich:
-                        <input
-                            type="checkbox"
-                            checked={isPublic}
-                            onChange={(e) => setIsPublic(e.target.checked)}
-                        />
-                    </label>
+                <div className="mb-3 form-check">
+                    <input
+                        type="checkbox"
+                        className="form-check-input"
+                        checked={isPublic}
+                        onChange={(e) => setIsPublic(e.target.checked)}
+                    />
+                    <label className="form-check-label">Öffentlich</label>
                 </div>
-                <div>
-                    <label>Teilnehmeranzahl: </label>
+                <div className="mb-3">
+                    <label className="form-label">Teilnehmeranzahl:</label>
                     <input
                         type="number"
+                        className="form-control"
                         value={participantCount}
                         onChange={(e) => setParticipantCount(e.target.value)}
                     />
                 </div>
-                <button type="submit">Hinzufügen</button>
+                <button type="submit" className="btn btn-primary">
+                    Hinzufügen
+                </button>
             </form>
-        </>
+        </div>
     );
-};
+}
 
 export default EventForm;

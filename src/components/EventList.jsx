@@ -1,21 +1,14 @@
 import React from "react";
 
-/**
- * EventList component
- * @author Peter Rutschmann
- * @param events
- * @returns {Element}
- * @constructor
- */
-function EventList({events}) {
+function EventList({ events }) {
     return (
-        <div>
-            <h2>Veranstaltungen</h2>
+        <div className="container my-5">
+            <h2 className="text-center mb-4">Veranstaltungen</h2>
             {events.length === 0 ? (
-                <p>Keine Veranstaltungen geplant.</p>
+                <p className="text-center text-muted">Keine Veranstaltungen geplant.</p>
             ) : (
-                <table border="1" style={{width: "100%", borderCollapse: "collapse"}}>
-                    <thead>
+                <table className="table table-striped table-bordered">
+                    <thead className="table-dark">
                     <tr>
                         <th>Name</th>
                         <th>Typ</th>
@@ -24,19 +17,19 @@ function EventList({events}) {
                     </tr>
                     </thead>
                     <tbody>
-                        {events.map((event, index) => (
-                            <tr key={index}>
-                                <td>{event.name}</td>
-                                <td>{event.type}</td>
-                                <td>{event.public ? "Ja" : "Nein"}</td>
-                                <td>{event.participants || "N/A"}</td>
-                            </tr>
-                        ))}
+                    {events.map((event, index) => (
+                        <tr key={index}>
+                            <td>{event.name}</td>
+                            <td>{event.type}</td>
+                            <td>{event.public ? "Ja" : "Nein"}</td>
+                            <td>{event.participants || "N/A"}</td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             )}
         </div>
     );
-};
+}
 
 export default EventList;
